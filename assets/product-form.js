@@ -7,7 +7,7 @@ if (!customElements.get('product-form')) {
 
         this.form = this.querySelector('form');
         this.variantIdInput.disabled = false;
-        this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
+        this.form.addEventListener('submit', this.onSubmit.bind(this));
         this.cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
         this.submitButton = this.querySelector('[type="submit"]');
         this.submitButtonText = this.submitButton.querySelector('span');
@@ -17,8 +17,63 @@ if (!customElements.get('product-form')) {
         this.hideErrors = this.dataset.hideErrors === 'true';
       }
 
-      onSubmitHandler(evt) {
-        evt.preventDefault();
+      onSubmit(event) {
+        // Get all radio inputs and text inputs from the form
+        const radioInputs = document.querySelectorAll('input[type="radio"]:checked');
+        const textInputs = document.querySelectorAll('input[type="text"], textarea');
+        const priceRange = document.getElementById('priceRange');
+        const priceRangeSlider = document.getElementById('priceRangeSlider');
+ 
+        // Update hidden properties
+        radioInputs.forEach(input => {
+          const propertyName = input.getAttribute('name');
+          if (propertyName && propertyName.startsWith('properties[')) {
+            const propertyInput = this.form.querySelector(`input[name="${propertyName}"]`);
+            if (propertyInput) {
+              propertyInput.value = input.value;
+            }
+          }
+        });
+
+        // Update text inputs
+        textInputs.forEach(input => {
+          const propertyName = input.getAttribute('name');
+          if (propertyName && propertyName.startsWith('properties[')) {
+            const propertyInput = this.form.querySelector(`input[name="${propertyName}"]`);
+            if (propertyInput) {
+              propertyInput.value = input.value;
+            }
+          }
+        });
+
+        // Update price range
+        if (priceRange && priceRangeSlider) {
+          const priceRangeInput = this.form.querySelector('input[name="properties[price-range]"]');
+          if (priceRangeInput) {
+            console.log(priceRange.textContent, priceRangeSlider.textContent);  
+            priceRangeInput.value = `${priceRange.textContent}`;
+          }
+        }
+
+        // Get and update total price amount
+        const totalPriceElement = document.querySelector('.total-price-amount');
+        if (totalPriceElement) {
+          const totalPriceInput = this.form.querySelector('input[name="properties[total_amount]"]');
+          if (totalPriceInput) {
+            totalPriceInput.value = totalPriceElement.textContent;
+          }
+        }
+
+        // Update custom note
+        const customNote = document.querySelector('textarea[name="custom-note"]');
+        if (customNote) {
+          const customNoteInput = this.form.querySelector('input[name="properties[custom-note]"]');
+          if (customNoteInput) {
+            customNoteInput.value = customNote.value;
+          }
+        }
+
+        event.preventDefault();
         if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
 
         this.handleErrorMessage();
@@ -53,7 +108,9 @@ if (!customElements.get('product-form')) {
                 message: response.message,
               });
               this.handleErrorMessage(response.description);
-
+/**
+ * 
+ */
               const soldOutMessage = this.submitButton.querySelector('.sold-out-message');
               if (!soldOutMessage) return;
               this.submitButton.setAttribute('aria-disabled', true);
@@ -105,7 +162,7 @@ if (!customElements.get('product-form')) {
             if (!this.error) this.submitButton.removeAttribute('aria-disabled');
             this.querySelector('.loading__spinner').classList.add('hidden');
 
-            CartPerformance.measureFromEvent("add:user-action", evt);
+            CartPerformance.measureFromEvent("add:user-action", event);
           });
       }
 

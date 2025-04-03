@@ -17,12 +17,19 @@ class CartItems extends HTMLElement {
     super();
     this.lineItemStatusElement =
       document.getElementById('shopping-cart-line-item-status') || document.getElementById('CartDrawer-LineItemStatus');
+    this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]')).reduce(
+      (total, quantityInput) => total + parseInt(quantityInput.value),
+      0
+    );
 
-    const debouncedOnChange = debounce((event) => {
+    this.debouncedOnChange = debounce((event) => {
       this.onChange(event);
     }, ON_CHANGE_DEBOUNCE_TIMER);
 
-    this.addEventListener('change', debouncedOnChange.bind(this));
+    this.addEventListener('change', this.debouncedOnChange.bind(this));
+    
+    // Calculate initial prices when cart loads
+    this.updateAllPrices();
   }
 
   cartUpdateUnsubscriber = undefined;
@@ -32,7 +39,7 @@ class CartItems extends HTMLElement {
       if (event.source === 'cart-items') {
         return;
       }
-      return this.onCartUpdate();
+      this.onCartUpdate();
     });
   }
 
@@ -84,7 +91,15 @@ class CartItems extends HTMLElement {
   }
 
   onChange(event) {
-    this.validateQuantity(event);
+    if (event.target.dataset.quantityVariantId) {
+      this.updateQuantity(
+        event.target.dataset.index,
+        event.target.value,
+        event,
+        document.activeElement.getAttribute('name'),
+        event.target.dataset.quantityVariantId
+      );
+    }
   }
 
   onCartUpdate() {
@@ -120,28 +135,93 @@ class CartItems extends HTMLElement {
   }
 
   getSectionsToRender() {
-    return [
-      {
+    const sections = [];
+    
+    // Main cart items section
+    const mainCartItems = document.getElementById('main-cart-items');
+    if (mainCartItems) {
+      sections.push({
         id: 'main-cart-items',
-        section: document.getElementById('main-cart-items').dataset.id,
+        section: mainCartItems.dataset.id,
         selector: '.js-contents',
-      },
-      {
-        id: 'cart-icon-bubble',
-        section: 'cart-icon-bubble',
-        selector: '.shopify-section',
-      },
-      {
-        id: 'cart-live-region-text',
-        section: 'cart-live-region-text',
-        selector: '.shopify-section',
-      },
-      {
+      });
+    }
+
+    // Cart icon bubble
+    sections.push({
+      id: 'cart-icon-bubble',
+      section: 'cart-icon-bubble',
+      selector: '.shopify-section',
+    });
+
+    // Cart live region text
+    sections.push({
+      id: 'cart-live-region-text',
+      section: 'cart-live-region-text',
+      selector: '.shopify-section',
+    });
+
+    // Main cart footer
+    const mainCartFooter = document.getElementById('main-cart-footer');
+    if (mainCartFooter) {
+      sections.push({
         id: 'main-cart-footer',
-        section: document.getElementById('main-cart-footer').dataset.id,
+        section: mainCartFooter.dataset.id,
         selector: '.js-contents',
-      },
-    ];
+      });
+    }
+
+    return sections;
+  }
+
+  updateAllPrices() {
+    const quantityInputs = this.querySelectorAll('[name="updates[]"]');
+    let cartTotal = 0;
+
+    quantityInputs.forEach(input => {
+      const line = input.dataset.index;
+      const quantity = parseInt(input.value);
+      if (line && quantity) {
+        // Find all price elements for this cart item
+        const priceElements = document.querySelectorAll(
+          `#CartItem-${line} .price.price--end`
+        );
+        
+        if (priceElements.length > 0) {
+          const totalAmount = priceElements[0].textContent;
+          const priceValue = parseFloat(totalAmount.replace(/[^0-9.-]+/g, ""));
+          const newTotal = priceValue * quantity;
+          const formattedTotal = this.formatMoney(newTotal * 100);
+          
+          // Update all price elements for this item
+          priceElements.forEach(element => {
+            element.textContent = formattedTotal;
+          });
+          
+          // Add this item's total to the cart total
+          cartTotal += newTotal;
+        }
+      }
+    });
+
+    // Create or update cart total element
+    const cartContainer =
+      document.querySelector(".main-cart")
+    if (cartContainer) {
+      let cartTotalContainer = document.querySelector('.cart-items__total');
+      if (cartTotalContainer) {
+        cartTotalContainer.textContent = `Cart Total: ${this.formatMoney(cartTotal * 100)}`;
+      }
+    }
+
+    // Update cart footer total if exists
+    const cartFooter = document.getElementById('main-cart-footer');
+    if (cartFooter) {
+      const cartTotalElement = cartFooter.querySelector('.totals__subtotal-value');
+      if (cartTotalElement) {
+        cartTotalElement.textContent = this.formatMoney(cartTotal * 100);
+      }
+    }
   }
 
   updateQuantity(line, quantity, event, name, variantId) {
@@ -188,6 +268,10 @@ class CartItems extends HTMLElement {
               section.selector
             );
           });
+
+          // Update all cart item prices
+          this.updateAllPrices();
+
           const updatedValue = parsedState.items[line - 1] ? parsedState.items[line - 1].quantity : undefined;
           let message = '';
           if (items.length === parsedState.items.length && updatedValue !== parseInt(quantityElement.value)) {
@@ -224,6 +308,15 @@ class CartItems extends HTMLElement {
       .finally(() => {
         this.disableLoading(line);
       });
+  }
+
+  formatMoney(cents) {
+    if (typeof Shopify !== 'undefined' && Shopify.formatMoney) {
+      return Shopify.formatMoney(cents);
+    }
+    
+    const value = (cents / 100).toFixed(2);
+    return `$${value}`;
   }
 
   updateLiveRegions(line, message) {

@@ -40,7 +40,6 @@
         product,
         id: product_form_id,
         class: 'form',
-        novalidate: 'novalidate',
         data-type: 'add-to-cart-form'
       -%}
         <input
@@ -56,10 +55,34 @@
           class="product-variant-id"
         >
 
+        <input type="hidden" name="quantity" value="1">
+
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
 
+        <!-- Line Item Properties -->
+        <input type="hidden" name="properties[media-type]" value="">
+        <input type="hidden" name="properties[record-size]" value="">
+        <input type="hidden" name="properties[display-preference]" value="">
+        <input type="hidden" name="properties[service-type]" value="">
+        <input type="hidden" name="properties[keyhole-mounts]" value="">
+        <input type="hidden" name="properties[expedited]" value="">
+        <input type="hidden" name="properties[authentication]" value="">
+        <input type="hidden" name="properties[insurance]" value="">
+        <input type="hidden" name="properties[price-range]" value="">
+        <input type="hidden" name="properties[custom-note]" value="">
+        <input type="hidden" name="properties[artist]" value="" />
+        <input type="hidden" name="properties[album-name]" value="">
+        <input type="hidden" name="properties[record-label]" value="">
+        <input type="hidden" name="properties[catalog-number]" value="">
+        <input type="hidden" name="properties[release-year]" value="">
+        <input type="hidden" name="properties[discogs-id]" value="">
+        <input type="hidden" name="properties[any-notes-about-this-submission-that-you-would-like-to-share]" value="">
+        <input type="hidden" name="properties[how-much-would-you-like-to-insure-your-item]" value="">
+        <input type="hidden" name="properties[custom-note]" value="">
+        <input type="hidden" name="properties[total_amount]" value="">
+        <input type="hidden" name="properties[submission_id]" value="" id="submissionIdInput">
         <div class="product-form__buttons">
           {%- liquid
             assign check_against_inventory = true
@@ -149,3 +172,10 @@
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 </div>
+
+<script>
+  document.querySelector('[data-type="add-to-cart-form"]').addEventListener('submit', function(e) {
+    const randomId = 'sub_' + Math.random().toString(36).substr(2, 9);
+    document.getElementById('submissionIdInput').value = randomId;
+  });
+</script>

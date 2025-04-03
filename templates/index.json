@@ -9,22 +9,75 @@
  */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "image_with_text_kgR6Mk": {
+      "type": "image-with-text",
       "blocks": {
-        "heading": {
+        "heading_ANVCPj": {
           "type": "heading",
           "settings": {
-            "heading": "Browse our latest products",
+            "heading": "<strong>Gradinghas a new standard. Where sound becomes legend.</strong>",
+            "heading_size": "hxxl"
+          }
+        },
+        "text_9PcLrk": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The premier destination for authenticating, grading and preserving all recorded music.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_pDw6By": {
+          "type": "button",
+          "settings": {
+            "button_label": "+ Start Submission",
+            "button_link": "shopify://products/submit-media",
+            "button_style_secondary": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_ANVCPj",
+        "text_9PcLrk",
+        "button_pDw6By"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/8ce85804db3fe32d56d0c58efb8dc69c7f0228de-774x772.webp",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_FcRjWr": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_xgQbx9": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>Grading has a new standard. Where sound becomes legend.</strong>",
             "heading_size": "h0"
           }
         },
-        "button": {
-          "type": "buttons",
+        "text_794Kac": {
+          "type": "text",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
+            "text": "<p>The premier destination for authenticating, grading and preserving all recorded music.</p>"
+          }
+        },
+        "button_RUcawP": {
+          "type": "button",
+          "settings": {
+            "button_label": "+ Start Submission",
+            "button_link": "shopify://products/submit-media",
+            "button_style_secondary": false,
             "button_label_2": "",
             "button_link_2": "",
             "button_style_secondary_2": false
@@ -32,53 +85,226 @@
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "heading_xgQbx9",
+        "text_794Kac",
+        "button_RUcawP"
       ],
+      "disabled": true,
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "multicolumn_xk6fLX": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_yfiQtn": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/f5383c9f472c9d27f0dd6fb5cf13a82f2f7040a8-80x81.webp",
+            "title": "<strong>Trust</strong>",
+            "text": "<p>AMG guarantees the authenticity of items encapsulated in our case.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_ABF4AY": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/6417f3344ab4ecfcc6a9e01ec177023a3b61f92f-64x65.webp",
+            "title": "<strong>Protect</strong>",
+            "text": "<p>Tamper-resistant case with museum-grade acrylic that protects from 99% of harmful UV light.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_iDKWbG": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/4434dd62a0eb858e9625505c10c1cf9f9f6478e7-64x65_1.webp",
+            "title": "<strong>Premier Grading Standard</strong>",
+            "text": "<p>Unbiased, proprietary grading scale that allows you to confidently understand the condition of an item.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_VRX4La": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/d7b4eff18634fb936a421e8a49c8d4ecb9b483ad-64x65.webp",
+            "title": "<strong>Value</strong>",
+            "text": "<p>Encapsulating and grading ensures the highest value for the prized pieces in your collection.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_yfiQtn",
+        "column_ABF4AY",
+        "column_iDKWbG",
+        "column_VRX4La"
+      ],
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
+        "custom_class": "why-grades",
+        "title": "<strong>Why Grade?</strong>",
+        "heading_size": "h0",
+        "image_width": "third",
         "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "multicolumn_AtX83a": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_KrNdmW": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_15.png",
+            "title": "Vinyl",
+            "text": "<p>From $75</p>",
+            "link_label": "Submit a vinyl",
+            "link": "shopify://products/submit-media"
+          }
+        },
+        "column_amjbjk": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_13.png",
+            "title": "CD",
+            "text": "<p>From $50</p>",
+            "link_label": "Submit a CD",
+            "link": "shopify://products/submit-media"
+          }
+        },
+        "column_C6WNzW": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_16.png",
+            "title": "8-Track",
+            "text": "<p>From $50</p>",
+            "link_label": "Submit an 8-Track",
+            "link": "shopify://products/submit-media"
+          }
+        },
+        "column_MbxwV6": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_17.png",
+            "title": "Cassette",
+            "text": "<p>From $50</p>",
+            "link_label": "Submit a Cassette",
+            "link": "shopify://products/submit-media"
+          }
+        }
+      },
+      "block_order": [
+        "column_KrNdmW",
+        "column_amjbjk",
+        "column_C6WNzW",
+        "column_MbxwV6"
+      ],
+      "settings": {
+        "custom_class": "column-tabs",
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "scheme-ceae5d65-b170-4495-b097-610b74a577e3",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
         "padding_bottom": 36
+      }
+    },
+    "multicolumn_iVLNct": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_tg3AnY": {
+          "type": "column",
+          "settings": {
+            "title": "Create an account",
+            "text": "<p>Just provide some basic information and you'll gain access to our comprehensive grading and preservation services.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_KXthbW": {
+          "type": "column",
+          "settings": {
+            "title": "Submit your order",
+            "text": "<p>Select the type of media you want to preserve, and choose from our range of services. Our user-friendly interface will guide you through the process, ensuring you get exactly what you need.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_VtJnw4": {
+          "type": "column",
+          "settings": {
+            "title": "Print the packing slip",
+            "text": "<p>You'll receive a confirmation email with a packing slip. Print this slip and include it in your package. The packing slip helps us identify your items and ensures they receive the correct treatment.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_Y4XBya": {
+          "type": "column",
+          "settings": {
+            "title": "Ship us your audio media",
+            "text": "<p>Carefully pack your audio media and ship it to us using your preferred shipping method. We recommend purchasing insurance to ensure your items arrive safely. Once we receive your package, our team of experts will get to work.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_tg3AnY",
+        "column_KXthbW",
+        "column_VtJnw4",
+        "column_Y4XBya"
+      ],
+      "settings": {
+        "custom_class": "how-it-works",
+        "title": "How it works",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "portrait",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 48
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "image_with_text_kgR6Mk",
+    "rich_text_FcRjWr",
+    "multicolumn_xk6fLX",
+    "multicolumn_AtX83a",
+    "multicolumn_iVLNct"
   ]
 }
