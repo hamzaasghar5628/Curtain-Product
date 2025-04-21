@@ -1,6 +1,14 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
-{% endschema %}
+<h1>Login</h1>
+
+{% form 'customer_login' %}
+  <label for="CustomerEmail">Email</label>
+  <input type="email" name="customer[email]" id="CustomerEmail" required />
+
+  <label for="CustomerPassword">Password</label>
+  <input type="password" name="customer[password]" id="CustomerPassword" required />
+
+  <input type="submit" value="Login" />
+
+  <p><a href="{{ routes.account_reset_password_url }}">Forgot password?</a></p>
+  <p><a href="{{ routes.account_register_url }}">Create account</a></p>
+{% endform %}
