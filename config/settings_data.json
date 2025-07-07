@@ -150,7 +150,7 @@
           "send_gtag_atc": false,
           "disable_tiktok_tracking": false,
           "disable_klaviyo_tracking": false,
-          "stop_cart_page": false,
+          "stop_cart_page": true,
           "apply_discount_before_checkout": false,
           "bag_selector": "",
           "hide_when_opened": "",
