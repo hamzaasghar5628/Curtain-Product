@@ -146,19 +146,19 @@
         "type": "shopify://apps/monster-cart-upsell-free-gifts/blocks/app-embed/a1b8e58a-bf1d-4e0f-8768-a387c3f643c0",
         "disabled": false,
         "settings": {
-          "markets_rounding": true,
+          "markets_rounding": false,
           "send_gtag_atc": true,
-          "disable_tiktok_tracking": true,
-          "disable_klaviyo_tracking": true,
+          "disable_tiktok_tracking": false,
+          "disable_klaviyo_tracking": false,
           "stop_cart_page": true,
-          "apply_discount_before_checkout": true,
+          "apply_discount_before_checkout": false,
           "bag_selector": "",
           "hide_when_opened": "",
           "show_item_properties": true,
           "stop_shopify_rate": true,
-          "dev_mode": true,
-          "force_v1_scripts": true,
-          "beta_version": true,
+          "dev_mode": false,
+          "force_v1_scripts": false,
+          "beta_version": false,
           "custom_code": "<script>\n    // custom code here\n</script>"
         }
       }
